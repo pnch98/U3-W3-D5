@@ -1,17 +1,27 @@
-import { Button, Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { TbPlayerPlayFilled } from "react-icons/tb";
-import { TbPlayerTrackNextFilled } from "react-icons/tb";
-import { TbPlayerTrackPrevFilled } from "react-icons/tb";
-import { ImShuffle } from "react-icons/im";
-import { LuRepeat } from "react-icons/lu";
 
 const BottomBar = () => {
+  const song = useSelector((state) => state.playSong.playerSong);
   return (
-    <Container className="fixed-bottom bg-container pt-1">
+    <Col className="fixed-bottom bg-container pt-1">
       <Row className="h-100">
         <Col lg={10} className="offset-lg-2">
-          <Row className="h-100 flex-column justify-content-center align-items-center">
+          <Row className="h-100 justify-content-center align-items-center">
+            {song && (
+              <Col className="position-fixed customStart">
+                <div className="d-flex text-white">
+                  <div style={{ width: "60px", height: "auto" }} className="p-1 me-3">
+                    <img src={song.album.cover_small} alt="cover" className="w-100" />
+                  </div>
+                  <div>
+                    <small className="mb-0 hover">{song.title}</small>
+                    <p className="mb-0">{song.artist.name}</p>
+                  </div>
+                </div>
+              </Col>
+            )}
             <Col className="col-6 col-md-4 playerControls">
               <div className="d-flex">
                 <Link>
@@ -37,7 +47,7 @@ const BottomBar = () => {
           </Row>
         </Col>
       </Row>
-    </Container>
+    </Col>
   );
 };
 export default BottomBar;

@@ -4,6 +4,8 @@ import ArtistCard from "./ArtistCard";
 import Album_Card from "./Album_Card";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { addSong, removeSong } from "../redux/reducers/likedSongsReducer";
+import { playSong } from "../redux/reducers/playerSongReducer";
+import { Link } from "react-router-dom";
 
 const ResultsPage = () => {
   const results = useSelector((state) => state.results.results);
@@ -46,21 +48,27 @@ const ResultsPage = () => {
             <Col xs={10} key={song.id}>
               <div className="border border-1 border-light rounded d-flex justify-content-between">
                 <div className="d-flex">
-                  <div style={{ width: "60px", height: "auto" }} className="p-1 me-3">
+                  <div
+                    style={{ width: "60px", height: "auto" }}
+                    className="p-1 me-3 hover"
+                    onClick={() => dispatch(playSong(song))}
+                  >
                     <img src={song.album.cover_small} alt="cover" className="w-100" />
                   </div>
                   <div>
-                    <small className="mb-0">{song.title}</small>
+                    <Link className="mb-0 undecored" onClick={() => dispatch(playSong(song))}>
+                      {song.title}
+                    </Link>
                     <p className="mb-0">{song.artist.name}</p>
                   </div>
                 </div>
                 <div className="d-flex align-items-center me-3">
-                  {likedSongs.includes(song.id) ? (
-                    <Button variant="transparent" className="text-white" onClick={() => dispatch(addSong(song.id))}>
+                  {likedSongs.includes(song) ? (
+                    <Button variant="transparent" className="text-white" onClick={() => dispatch(removeSong(song))}>
                       <i className="bi bi-heart-fill"></i>
                     </Button>
                   ) : (
-                    <Button variant="transparent" className="text-white" onClick={() => dispatch(removeSong(song.id))}>
+                    <Button variant="transparent" className="text-white" onClick={() => dispatch(addSong(song))}>
                       <i className="bi bi-heart"></i>
                     </Button>
                   )}

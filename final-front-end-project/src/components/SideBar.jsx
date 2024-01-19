@@ -1,17 +1,6 @@
-import {
-  Button,
-  Col,
-  Container,
-  Form,
-  FormControl,
-  FormGroup,
-  ListGroup,
-  Nav,
-  Navbar,
-  NavbarBrand,
-} from "react-bootstrap";
+import { Button, Col, Container, Form, FormControl, ListGroup, Nav, Navbar, NavbarBrand } from "react-bootstrap";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { setResults } from "../redux/reducers/resultsReducer";
 import { useDispatch, useSelector } from "react-redux";
@@ -54,10 +43,10 @@ const SideBar = () => {
           <Navbar.Collapse id="navbarNavAltMarkup">
             <Nav className="me-auto">
               <ListGroup>
-                <Nav.Link href="#home">
+                <Nav.Link as={NavLink} to={"/"}>
                   <i className="bi bi-house-door-fill"></i>&nbsp; Home
                 </Nav.Link>
-                <Nav.Link href="#link">
+                <Nav.Link as={NavLink} to={"/favourites"}>
                   <i className="bi bi-book-fill"></i>&nbsp; Your Library
                 </Nav.Link>
                 <Nav.Link className="mt-3">

@@ -9,10 +9,10 @@ const likedSongsSlice = createSlice({
   initialState,
   reducers: {
     addSong: (state, action) => {
-      state.likedSongs.push(action.payload);
+      state.likedSongs = [...state.likedSongs, action.payload];
     },
     removeSong: (state, action) => {
-      state.likedSongs.filter((song) => song !== parseInt(action.payload));
+      state.likedSongs.filter((_, song) => song !== action.payload);
     },
   },
 });

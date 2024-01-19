@@ -1,11 +1,12 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./data/assets/style.css";
+import "./App.css";
 import BottomBar from "./components/BottomBar";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import SideBar from "./components/SideBar";
 import HomePage from "./components/HomePage";
 import ResultsPage from "./components/ResultsPage";
-import Details from "./components/Details";
+import Favourites from "./components/Favourites";
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/results" element={<ResultsPage />} />
-          {/* <Route path="/:type/:id" element={<Details />} */}
+          <Route path="/favourites" element={<Favourites />} />
         </Routes>
       </BrowserRouter>
     </div>
