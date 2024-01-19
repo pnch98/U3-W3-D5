@@ -27,7 +27,6 @@ const HomePage = () => {
       if (response.ok) {
         let { data } = await response.json();
         data.length = 4;
-        console.log(data);
         switch (artistName) {
           case "radiohead":
             dispatch(setFirstSection(data));
